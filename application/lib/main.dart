@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:innorun/data/theme.dart';
-import 'package:innorun/pages/home_page.dart';
+import 'package:innorun/pages/main_page.dart';
 
 void main() {
   runApp(
@@ -24,7 +24,7 @@ class InnoRun extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'InnoRun',
           theme: notifier.currentTheme,
-          home: const HomePage(),
+          home: const HomePageForState(),
         );
       }
     );
