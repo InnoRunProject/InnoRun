@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:innorun/data/theme.dart';
+import 'package:innorun/data/provider.dart';
 import 'package:innorun/pages/main_page.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeNotifier(ThemeData.light()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => CreatedSessions(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ThemeNotifier(ThemeData.light()),
+        ),
+      ],
       child: const InnoRun(),
     )
   );
