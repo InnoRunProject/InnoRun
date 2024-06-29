@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:provider/provider.dart';
+import 'dart:convert';
+import '../data/provider.dart';
 
 void main() {
   runApp(MaterialApp(home: MapScreen()));
 }
+
+void convertToJson(List<LatLng> _latlng){
+  // List<Marker> markers2 = [];
+  var pointsJson = jsonEncode(_latlng.map((point) => point.toJson()).toList());
+  print(pointsJson);
+  // for(int i = 0; i < _latlng.length; i++){
+  //   markers2.add(Marker(
+  //       point: _latlng[i],
+  //       child: markers2.isEmpty? const Icon(Icons.pin_drop, color: Colors.black) :
+  //       const Icon(Icons.run_circle_rounded, color: Colors.black)
+  //   ));
+  // }
+  // print('----------------------');
+  // print(markers2[0].point);
+}
+
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -16,9 +35,12 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   late final MapController _mapController;
   double zoom = 15.0;
-
+  final nameController = TextEditingController();
+  final timeController = TextEditingController();
+  final placeController = TextEditingController();
   List<Marker> _markers = [];
   List<LatLng> _points = [];
+
 
   @override
   void initState() {
@@ -37,7 +59,8 @@ class _MapScreenState extends State<MapScreen> {
       _points.add(lat);
       _markers.add(Marker(
           point: lat,
-          child: _markers.isEmpty? Icon(Icons.pin_drop) : Icon(Icons.run_circle_rounded)
+          child: _markers.isEmpty? const Icon(Icons.pin_drop, color: Colors.black) :
+          const Icon(Icons.run_circle_rounded, color: Colors.black)
       ));
     });
   }
@@ -142,6 +165,7 @@ class _MapScreenState extends State<MapScreen> {
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: TextField(
+                      controller: nameController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Name',
@@ -157,6 +181,7 @@ class _MapScreenState extends State<MapScreen> {
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: TextField(
+                      controller: placeController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Place',
@@ -172,6 +197,7 @@ class _MapScreenState extends State<MapScreen> {
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: TextField(
+                      controller: timeController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Time',
@@ -187,10 +213,15 @@ class _MapScreenState extends State<MapScreen> {
                       ElevatedButton(
                         onPressed: () {
                           print("Кнопка создать нажата");
+                          String name = nameController.text;
+                          String time = timeController.text;
+                          String place = placeController.text;
+                          convertToJson(_points);
+                          Provider.of<CreatedSessions>(context, listen: false).addSession(name, time, place);
                         },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
+                          foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                         ),
                         child: Text('Create'),
                       ),
