@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:innorun/data/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:innorun/pages/map.dart';
 
 
 class HomePageForState extends StatefulWidget {
@@ -15,7 +16,7 @@ class HomePage extends State<HomePageForState> {
   List<Widget> body = const [
     Icon(Icons.home_outlined),
     Icon(Icons.search),
-    Icon(Icons.wifi_tethering_outlined),
+    MapScreen(),
     Icon(Icons.book_outlined),
   ];
   Color navigationBarIconColor = Colors.black;
