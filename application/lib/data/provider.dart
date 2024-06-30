@@ -1,12 +1,29 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:innorun/pages/map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:dio/dio.dart';
 
 class CreatedSessions extends ChangeNotifier {
-  List<Session> _sessions = [];
+  List<Session> _sessions = []; 
   List<Session> get sessions => _sessions;
+
   void addSession(String name, String time, String place,List<LatLng> latlng ) {
     _sessions.insert(0, Session(name: name, time: time, place: place, latlng: latlng));
     notifyListeners();
+  }
+}
+
+class Parser {
+  static String base_url = 'http://localhost:5000/';
+
+  static Future<List<Session>> getSessions() async {
+    final response = await Dio().get(base_url);
+    List<Session> sessions = [];
+    for (var i = 0; i < response.data.length; i++) {
+      sessions.add(convertFromJson(response.data[i]));
+    }
+    return sessions;
   }
 }
 

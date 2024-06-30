@@ -25,7 +25,7 @@ def upload():
               BASE_SESSIONS_URL +
               '/session-' +
               datetime.date.today().strftime('%D.%M.%Y') +
-              '.json')
+                '.json')
     return 'Data uploaded successfully'
 
 

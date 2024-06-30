@@ -21,16 +21,18 @@ void convertToJson(List<LatLng> _latlng, String name, String time, String place)
   convertFromJson(jsonEvent);
 }
 
-void convertFromJson(String jsonString) {
+Session convertFromJson(String jsonString) {
   Map<String, dynamic> jsonData = jsonDecode(jsonString);
   String name = jsonData['owner'];
   String time = jsonData['date'];
+  String place = jsonData['place'];
   List<dynamic> pointsJson = jsonDecode(jsonData['route']);
   List<LatLng> latlng = pointsJson.map((point) => LatLng.fromJson(point)).toList();
 
   print('Name: $name');
   print('Time: $time');
   print('LatLng: ${latlng}');
+  return Session(name: name, time: time, place: place, latlng: latlng);
 }
 
 class MapScreen extends StatefulWidget {
