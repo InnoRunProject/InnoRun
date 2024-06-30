@@ -16,4 +16,8 @@ class Session {
   final String place;
   final List<LatLng> latlng;
   Session({required this.name, required this.time, required this.place, required this.latlng});
+  @override
+  String toString() {
+    return "time: $time, creator: $name, place: $place";
+  }
 }

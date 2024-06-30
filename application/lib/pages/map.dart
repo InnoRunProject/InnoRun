@@ -225,7 +225,7 @@ class _MapScreenState extends State<MapScreen> {
                           String place = placeController.text;
                           convertToJson(_points, name, time, place);
                           Provider.of<CreatedSessions>(context, listen: false).addSession(name, time, place, _points);
-                          Navigator.pushNamed(context, '/map');
+                          Navigator.pushNamed(context, '/');
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
