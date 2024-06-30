@@ -3,8 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:innorun/data/theme.dart';
 import 'package:innorun/data/provider.dart';
 import 'package:innorun/pages/main_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:innorun/data/session_save.dart';
 
-void main() {
+import 'data/boxes.dart';
+
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(SessionSaveAdapter());
+  boxSession = await Hive.openBox<SessionSave>('sesssionsBox');
   runApp(
     MultiProvider(
       providers: [

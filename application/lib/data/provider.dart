@@ -4,7 +4,7 @@ class CreatedSessions extends ChangeNotifier {
   List<Session> _sessions = [];
   List<Session> get sessions => _sessions;
   void addSession(String name, String time, String place) {
-    _sessions.insert(0, Session(name: name, time: time, place: place));
+    _sessions.insert(_sessions.length, Session(name: name, time: time, place: place));
     notifyListeners();
   }
 }

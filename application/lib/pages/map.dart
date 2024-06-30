@@ -5,16 +5,12 @@ import 'package:provider/provider.dart';
 import 'dart:convert';
 import '../data/provider.dart';
 
-void main() {
-  runApp(MaterialApp(home: MapScreen()));
-}
 
 void convertToJson(List<LatLng> _latlng, String name, String time, String place){
   String pointsJson = jsonEncode(_latlng.map((point) => point.toJson()).toList());
   var event = {
     'date': time,
     'owner': name,
-
     'route': pointsJson,
   };
   String jsonEvent = jsonEncode(event);
