@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:innorun/data/theme.dart';
 import 'package:innorun/data/provider.dart';
 import 'package:innorun/pages/main_page.dart';
+import 'package:innorun/pages/map.dart';
 
 void main() {
   runApp(
@@ -36,7 +37,7 @@ class InnoRun extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (context) => const HomePageForState(),
-            '/map': (context) => const MapScreenn(),
+            '/map': (context) => const MapScreen(),
           },
         );
       }

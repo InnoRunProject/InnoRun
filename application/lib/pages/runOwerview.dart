@@ -3,10 +3,12 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import '../data/provider.dart';
+import 'package:innorun/pages/main_page.dart';
 
 
 class MapScreenn extends StatefulWidget {
-  const MapScreenn({Key? key}) : super(key: key);
+  final int index;
+  MapScreenn({required this.index, Key? key}) : super(key: key);
 
   @override
   State<MapScreenn> createState() => _MapScreenState();
@@ -15,7 +17,6 @@ class MapScreenn extends StatefulWidget {
 class _MapScreenState extends State<MapScreenn> {
   late final MapController _mapController;
   double zoom = 15.0;
-
 
   @override
   void initState() {
@@ -32,10 +33,10 @@ class _MapScreenState extends State<MapScreenn> {
   Widget build(BuildContext context) {
     CreatedSessions createdSessions = Provider.of<CreatedSessions>(context, listen: false);
     List<Session> sessions = createdSessions.sessions;
-    String name = sessions[0].name;
-    String time = sessions[0].time;
-    String place = sessions[0].place;
-    List<LatLng> _points = sessions[0].latlng;
+    String name = sessions[widget.index].name;
+    String time = sessions[widget.index].time;
+    String place = sessions[widget.index].place;
+    List<LatLng> _points = sessions[widget.index].latlng;
     List<Marker> _markers2 = [];
     for(int i = 0; i < _points.length; i++){
       _markers2.add(Marker(
@@ -130,6 +131,10 @@ class _MapScreenState extends State<MapScreenn> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const HomePageForState()),
+                          );
                           print("Кнопка создать нажата");
                         },
                         style: ButtonStyle(
