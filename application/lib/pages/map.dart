@@ -14,7 +14,6 @@ void convertToJson(List<LatLng> _latlng, String name, String time, String place)
   var event = {
     'date': time,
     'owner': name,
-
     'route': pointsJson,
   };
   String jsonEvent = jsonEncode(event);
@@ -49,7 +48,6 @@ class _MapScreenState extends State<MapScreen> {
   final placeController = TextEditingController();
   List<Marker> _markers = [];
   List<LatLng> _points = [];
-
 
   @override
   void initState() {
@@ -226,7 +224,8 @@ class _MapScreenState extends State<MapScreen> {
                           String time = timeController.text;
                           String place = placeController.text;
                           convertToJson(_points, name, time, place);
-                          Provider.of<CreatedSessions>(context, listen: false).addSession(name, time, place);
+                          Provider.of<CreatedSessions>(context, listen: false).addSession(name, time, place, _points);
+                          Navigator.pushNamed(context, '/map');
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(Colors.black),

@@ -12,6 +12,7 @@ class HomePageForState extends StatefulWidget {
 }
 
 class HomePage extends State<HomePageForState> {
+  bool ddd = false;
   int currentIndex = 0;
   List<Widget> body = const [
     Icon(Icons.home_outlined),
