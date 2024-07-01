@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:innorun/data/theme.dart';
 import 'package:innorun/pages/map.dart';
 import 'package:provider/provider.dart';
@@ -6,8 +7,8 @@ import 'package:innorun/pages/home_page.dart';
 import 'HistoryPage.dart';
 
 class HomePageForState extends StatefulWidget {
-  const HomePageForState({super.key});
-
+  HomePageForState({required this.ref ,super.key});
+  final WidgetRef ref;
   @override
   State<HomePageForState> createState() => HomePage();
 }
@@ -15,9 +16,9 @@ class HomePageForState extends StatefulWidget {
 class HomePage extends State<HomePageForState> {
   bool ddd = false;
   int currentIndex = 0;
-  List<Widget> body = const [
+  List<Widget> body = [
     HomePageInitial(),
-    Historypage(),
+    Historypage(ref: widget.ref),
     MapScreen(),
   ];
   Color navigationBarIconColor = Colors.black;

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/provider.dart';
 import 'HistoryPageOne.dart';
 
 class Historypage extends StatefulWidget {
-  const Historypage({super.key});
+  Historypage({required this.ref, super.key});
+  final WidgetRef ref;
 
   @override
   State<Historypage> createState() => _HistorypageState();
@@ -24,18 +25,16 @@ class _HistorypageState extends State<Historypage> {
             children: <Widget>[
               Expanded(
                 child: ListView.builder(
-                  itemCount: Provider.of<CreatedSessionsHistory>(context)
-                      .sessions
-                      .length,
+                  itemCount: widget.ref.read(sessionHistoryKey).length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.black),
+                              WidgetStateProperty.all<Color>(Colors.black),
                           shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -46,13 +45,10 @@ class _HistorypageState extends State<Historypage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    Historypageone(index: index)),
+                                    Historypageone(index: index, ref: widget.ref)),
                           );
                         },
-                        child: Text(
-                          Provider.of<CreatedSessionsHistory>(context)
-                              .sessions[index]
-                              .toString(),
+                        child: Text(widget.ref.read(sessionHistoryKey)[index].toString(),
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

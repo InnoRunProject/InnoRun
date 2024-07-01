@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
@@ -8,8 +9,9 @@ import 'TimerPage.dart';
 
 class MapScreenn extends StatefulWidget {
   final int index;
+  final WidgetRef ref;
 
-  MapScreenn({required this.index, Key? key}) : super(key: key);
+  MapScreenn({required this.index, required this.ref, Key? key}) : super(key: key);
 
   @override
   State<MapScreenn> createState() => _MapScreenState();
@@ -33,9 +35,7 @@ class _MapScreenState extends State<MapScreenn> {
 
   @override
   Widget build(BuildContext context) {
-    CreatedSessions createdSessions =
-        Provider.of<CreatedSessions>(context, listen: false);
-    List<Session> sessions = createdSessions.sessions;
+    List<Session> sessions = widget.ref.watch(sessionKey);
     String name = sessions[widget.index].name;
     String time = sessions[widget.index].time;
     String place = sessions[widget.index].place;
@@ -139,7 +139,7 @@ class _MapScreenState extends State<MapScreenn> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => StopwatchPage(
-                                      index: widget.index,
+                                      index: widget.index, ref : widget.ref
                                     )),
                           );
                           print("Кнопка создать нажата");

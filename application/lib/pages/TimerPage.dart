@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:innorun/pages/animatedHeart.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +10,9 @@ import 'main_page.dart';
 
 class StopwatchPage extends StatefulWidget {
   final int index;
+  final WidgetRef ref;
 
-  StopwatchPage({required this.index, Key? key}) : super(key: key);
+  StopwatchPage({required this.index, required this.ref, Key? key}) : super(key: key);
 
   @override
   _StopwatchPageState createState() => _StopwatchPageState();
@@ -60,11 +62,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
 
   @override
   Widget build(BuildContext context) {
-    CreatedSessions createdSessions =
-        Provider.of<CreatedSessions>(context, listen: false);
-    CreatedSessionsHistory createdSessionsHistory =
-        Provider.of<CreatedSessionsHistory>(context, listen: false);
-    List<Session> sessions = createdSessions.sessions;
+    List<Session> sessions = widget.ref.watch(sessionKey);
     List<LatLng> _points = sessions[widget.index].latlng;
     List<Marker> _markers2 = [];
     String name = sessions[widget.index].name;
@@ -140,13 +138,13 @@ class _StopwatchPageState extends State<StopwatchPage> {
                   ),
             ElevatedButton(
                 onPressed: () {
-                  createdSessionsHistory.addSession(
-                      name, time, place, _points, seconds.toString());
-                  createdSessions.removeSession(widget.index);
+                  widget.ref.read(sessionHistoryKey).insert(0, SessionHistory(
+                      name : name, time: time, place: place, latlng: _points, runTime: seconds.toString()));
+                  sessions.remove(widget.index);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const HomePageForState()),
+                        builder: (context) => HomePageForState(ref: widget.ref,)),
                   );
                 },
                 child: const Text("Finish"))

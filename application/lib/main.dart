@@ -9,13 +9,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (_) => CreatedSessions(),
-      ),
-      ChangeNotifierProvider(
         create: (_) => ThemeNotifier(ThemeData.light()),
-      ),
-      ChangeNotifierProvider(
-        create: (_) => CreatedSessionsHistory(),
       ),
     ],
     child: const InnoRun(),

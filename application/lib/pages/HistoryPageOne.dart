@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:innorun/pages/main_page.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:provider/provider.dart';
 
 import '../data/provider.dart';
 
 class Historypageone extends StatefulWidget {
   final int index;
+  final WidgetRef ref;
 
-  Historypageone({required this.index, Key? key}) : super(key: key);
+  Historypageone({required this.index, required this.ref, Key? key}) : super(key: key);
 
   @override
   State<Historypageone> createState() => _MapScreenState();
@@ -33,9 +34,7 @@ class _MapScreenState extends State<Historypageone> {
 
   @override
   Widget build(BuildContext context) {
-    CreatedSessionsHistory createdSessions =
-        Provider.of<CreatedSessionsHistory>(context, listen: false);
-    List<SessionHistory> sessions = createdSessions.sessions;
+    List<SessionHistory> sessions = widget.ref.watch(sessionHistoryKey);
     String name = sessions[widget.index].name;
     String time = sessions[widget.index].time;
     String place = sessions[widget.index].place;

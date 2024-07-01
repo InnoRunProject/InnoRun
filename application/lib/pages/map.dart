@@ -31,7 +31,7 @@ Session convertFromJson(String jsonString) {
   print('Name: $name');
   print('Time: $time');
   print('LatLng: ${latlng}');
-  return Session(name: name, time: time, place: place, latlng: latlng);
+  return Session(name: name, time: time, place: place, latlng: latlng, RunTime: '');
 }
 
 class MapScreen extends StatefulWidget {
