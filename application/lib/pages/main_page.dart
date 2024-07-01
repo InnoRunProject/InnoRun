@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:innorun/data/provider.dart';
 import 'package:innorun/data/theme.dart';
 import 'package:innorun/pages/map.dart';
-import 'package:innorun/pages/runOwerview.dart';
 import 'package:provider/provider.dart';
-
+import 'package:innorun/pages/home_page.dart';
 import 'HistoryPage.dart';
 
 class HomePageForState extends StatefulWidget {
@@ -18,7 +16,7 @@ class HomePage extends State<HomePageForState> {
   bool ddd = false;
   int currentIndex = 0;
   List<Widget> body = const [
-    Icon(Icons.home_outlined),
+    HomePageInitial(),
     Historypage(),
     MapScreen(),
     Icon(Icons.book_outlined),
