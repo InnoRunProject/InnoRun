@@ -43,28 +43,7 @@ class HomePage extends State<HomePageForState> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: <Widget> [
-            Expanded(
-              child: ListView.builder(
-                itemCount: Provider.of<CreatedSessions>(context).sessions.length,
-                itemBuilder: (context, index) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MapScreenn(index : index)),
-                      );
-                    },
-                    child: Text(Provider.of<CreatedSessions>(context).sessions[index].toString()),
-                  );
-                },
-              ),
-            )
-          ],
-        ),
-      ),
+      body: body[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
@@ -72,18 +51,7 @@ class HomePage extends State<HomePageForState> {
         onTap: (index) {
           setState(() {
             currentIndex = index;
-            if (currentIndex == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MapScreen()),
-              );
-            }
-            if (currentIndex == 1) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Historypage()),
-              );
-            }
+            body[currentIndex];
           });
         },
         items: const [
