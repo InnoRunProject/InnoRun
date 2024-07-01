@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../data/provider.dart';
 import 'TimerPage.dart';
 
@@ -124,11 +124,11 @@ class _MapScreenState extends State<MapScreenn> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Name of creator: $name"),
+                  Text("${AppLocalizations.of(context)!.name}: $name"),
                   SizedBox(height: 8.0),
-                  Text("Place:  $place"),
+                  Text("${AppLocalizations.of(context)!.place}:  $place"),
                   SizedBox(height: 8.0),
-                  Text("Time: $time"),
+                  Text("${AppLocalizations.of(context)!.time} $time"),
                   SizedBox(height: 16.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +150,7 @@ class _MapScreenState extends State<MapScreenn> {
                           foregroundColor:
                               WidgetStateProperty.all<Color>(Colors.white),
                         ),
-                        child: Text('Start'),
+                        child: Text(AppLocalizations.of(context)!.start),
                       ),
                     ],
                   )

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:innorun/pages/map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreatedSessions extends ChangeNotifier {
   List<Session> _sessions = [];
@@ -37,7 +38,7 @@ class Session {
 
   @override
   String toString() {
-    return "time: $time, creator: $name, place: $place";
+    return "Time: $time, Creator: $name, Place: $place";
   }
 }
 
@@ -83,6 +84,6 @@ class SessionHistory {
 
   @override
   String toString() {
-    return "time: $time, creator: $name, place: $place, RunTime: $RunTime";
+    return "Time: $time, Creator: $name, Place: $place, RunTime: $RunTime";
   }
 }

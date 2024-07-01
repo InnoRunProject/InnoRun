@@ -1,0 +1,16 @@
+{
+    "helloWorld": "Hello World!",
+    "back": "Back",
+    "home": "Home",
+    "history": "History",
+    "addSession": "Add Session",
+    "name": "Name",
+    "place": "Place",
+    "pause": "Pause",
+    "time": "Time",
+    "create": "Create",
+    "creator": "Creator",
+    "start": "Start",
+    "continuee": "Continue",
+    "finish": "Finish"
+}

@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import '../data/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void convertToJson(
     List<LatLng> _latlng, String name, String time, String place) {
@@ -170,7 +171,7 @@ class _MapScreenState extends State<MapScreen> {
                       controller: nameController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: 'Name',
+                        labelText: AppLocalizations.of(context)!.name,
                         labelStyle: TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0)),
@@ -187,7 +188,7 @@ class _MapScreenState extends State<MapScreen> {
                       controller: placeController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: 'Place',
+                        labelText: AppLocalizations.of(context)!.place,
                         labelStyle: TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0)),
@@ -204,7 +205,7 @@ class _MapScreenState extends State<MapScreen> {
                       controller: timeController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: 'Time',
+                        labelText: AppLocalizations.of(context)!.time,
                         labelStyle: TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0)),
@@ -232,7 +233,7 @@ class _MapScreenState extends State<MapScreen> {
                           foregroundColor:
                               WidgetStateProperty.all<Color>(Colors.white),
                         ),
-                        child: Text('Create'),
+                        child: Text(AppLocalizations.of(context)!.create),
                       ),
                     ],
                   )

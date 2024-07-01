@@ -3,9 +3,11 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:innorun/pages/animatedHeart.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-
 import '../data/provider.dart';
 import 'main_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
 
 class StopwatchPage extends StatefulWidget {
   final int index;
@@ -130,6 +132,28 @@ class _StopwatchPageState extends State<StopwatchPage> {
                     child: const Text("Finish"))
               ],
             ),
+            SizedBox(height: 20),
+            isRunning
+                ? ElevatedButton(
+                    onPressed: onPauseButtonPressed,
+                    child: Text(AppLocalizations.of(context)!.pause),
+                  )
+                : ElevatedButton(
+                    onPressed: onContinueButtonPressed,
+                    child: Text(AppLocalizations.of(context)!.continuee),
+                  ),
+            ElevatedButton(
+                onPressed: () {
+                  createdSessionsHistory.addSession(
+                      name, time, place, _points, seconds.toString());
+                  createdSessions.removeSession(widget.index);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomePageForState()),
+                  );
+                },
+                child: Text(AppLocalizations.of(context)!.finish))
           ],
         ),
       ),
