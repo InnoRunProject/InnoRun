@@ -2,38 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
 import '../data/provider.dart';
-
-void main() {
-  runApp(MaterialApp(home: MapScreen()));
-}
-
-void convertToJson(List<LatLng> _latlng, String name, String time, String place){
-  String pointsJson = jsonEncode(_latlng.map((point) => point.toJson()).toList());
-  var event = {
-    'date': time,
-    'owner': name,
-    'route': pointsJson,
-  };
-  String jsonEvent = jsonEncode(event);
-  // print(pointsJson);
-  convertFromJson(jsonEvent);
-}
-
-Session convertFromJson(String jsonString) {
-  Map<String, dynamic> jsonData = jsonDecode(jsonString);
-  String name = jsonData['owner'];
-  String time = jsonData['date'];
-  String place = jsonData['place'];
-  List<dynamic> pointsJson = jsonDecode(jsonData['route']);
-  List<LatLng> latlng = pointsJson.map((point) => LatLng.fromJson(point)).toList();
-
-  print('Name: $name');
-  print('Time: $time');
-  print('LatLng: ${latlng}');
-  return Session(name: name, time: time, place: place, latlng: latlng);
-}
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -225,7 +194,6 @@ class _MapScreenState extends State<MapScreen> {
                           String name = nameController.text;
                           String time = timeController.text;
                           String place = placeController.text;
-                          convertToJson(_points, name, time, place);
                           Provider.of<CreatedSessions>(context, listen: false).addSession(name, time, place, _points);
                           Navigator.pushNamed(context, '/');
                         },
