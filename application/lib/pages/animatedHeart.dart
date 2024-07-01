@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-
 class HeartBeatAnimation extends StatefulWidget {
   final bool isRunning;
 
@@ -21,10 +20,9 @@ class _HeartBeatAnimationState extends State<HeartBeatAnimation>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: widget.isRunning? Duration(seconds: 1) : Duration(seconds: 5),
+      duration: widget.isRunning ? Duration(seconds: 1) : Duration(seconds: 5),
     )..repeat(reverse: true);
   }
-
 
   @override
   void dispose() {

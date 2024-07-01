@@ -24,8 +24,7 @@ class _HistorypageState extends State<Historypage> {
             children: <Widget>[
               Expanded(
                 child: ListView.builder(
-                  itemCount: Provider
-                      .of<CreatedSessionsHistory>(context)
+                  itemCount: Provider.of<CreatedSessionsHistory>(context)
                       .sessions
                       .length,
                   itemBuilder: (context, index) {
@@ -34,8 +33,9 @@ class _HistorypageState extends State<Historypage> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              MaterialStateProperty.all<Color>(Colors.black),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -45,12 +45,12 @@ class _HistorypageState extends State<Historypage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Historypageone(index: index)),
+                                builder: (context) =>
+                                    Historypageone(index: index)),
                           );
                         },
                         child: Text(
-                          Provider
-                              .of<CreatedSessionsHistory>(context)
+                          Provider.of<CreatedSessionsHistory>(context)
                               .sessions[index]
                               .toString(),
                           style: TextStyle(color: Colors.white),

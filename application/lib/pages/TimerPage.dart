@@ -7,9 +7,9 @@ import 'package:provider/provider.dart';
 import '../data/provider.dart';
 import 'main_page.dart';
 
-
 class StopwatchPage extends StatefulWidget {
   final int index;
+
   StopwatchPage({required this.index, Key? key}) : super(key: key);
 
   @override
@@ -58,24 +58,24 @@ class _StopwatchPageState extends State<StopwatchPage> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    CreatedSessions createdSessions = Provider.of<CreatedSessions>(context, listen: false);
-    CreatedSessionsHistory createdSessionsHistory = Provider.of<CreatedSessionsHistory>(context, listen: false);
+    CreatedSessions createdSessions =
+        Provider.of<CreatedSessions>(context, listen: false);
+    CreatedSessionsHistory createdSessionsHistory =
+        Provider.of<CreatedSessionsHistory>(context, listen: false);
     List<Session> sessions = createdSessions.sessions;
     List<LatLng> _points = sessions[widget.index].latlng;
     List<Marker> _markers2 = [];
     String name = sessions[widget.index].name;
     String time = sessions[widget.index].time;
     String place = sessions[widget.index].place;
-    for(int i = 0; i < _points.length; i++){
+    for (int i = 0; i < _points.length; i++) {
       _markers2.add(Marker(
           point: _points[i],
-          child: _markers2.isEmpty? const Icon(Icons.pin_drop, color: Colors.black) :
-          const Icon(Icons.run_circle_rounded, color: Colors.black)
-      ));
+          child: _markers2.isEmpty
+              ? const Icon(Icons.pin_drop, color: Colors.black)
+              : const Icon(Icons.run_circle_rounded, color: Colors.black)));
     }
     return Scaffold(
       body: Center(
@@ -97,8 +97,10 @@ class _StopwatchPageState extends State<StopwatchPage> {
                       ),
                       children: [
                         TileLayer(
-                          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          userAgentPackageName: 'com.example.flutter_map_example',
+                          urlTemplate:
+                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          userAgentPackageName:
+                              'com.example.flutter_map_example',
                         ),
                         MarkerLayer(
                           markers: _markers2,
@@ -118,7 +120,9 @@ class _StopwatchPageState extends State<StopwatchPage> {
                 ),
               ),
             ),
-            HeartBeatAnimation(isRunning: isRunning,),
+            HeartBeatAnimation(
+              isRunning: isRunning,
+            ),
             SizedBox(height: 20),
             Text(
               seconds.toString(),
@@ -127,24 +131,25 @@ class _StopwatchPageState extends State<StopwatchPage> {
             SizedBox(height: 20),
             isRunning
                 ? ElevatedButton(
-              onPressed: onPauseButtonPressed,
-              child: Text('Пауза'),
-            )
+                    onPressed: onPauseButtonPressed,
+                    child: Text('Пауза'),
+                  )
                 : ElevatedButton(
-              onPressed: onContinueButtonPressed,
-              child: Text('Продолжить'),
-            ),
+                    onPressed: onContinueButtonPressed,
+                    child: Text('Продолжить'),
+                  ),
             ElevatedButton(
                 onPressed: () {
-                  createdSessionsHistory.addSession(name, time, place, _points, seconds.toString());
+                  createdSessionsHistory.addSession(
+                      name, time, place, _points, seconds.toString());
                   createdSessions.removeSession(widget.index);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePageForState()),
-                    );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomePageForState()),
+                  );
                 },
-                child: const Text("Finish")
-            )
+                child: const Text("Finish"))
           ],
         ),
       ),

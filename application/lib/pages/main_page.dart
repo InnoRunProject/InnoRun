@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:innorun/data/provider.dart';
 import 'package:innorun/data/theme.dart';
-import 'package:provider/provider.dart';
 import 'package:innorun/pages/map.dart';
 import 'package:innorun/pages/runOwerview.dart';
+import 'package:provider/provider.dart';
 
 import 'HistoryPage.dart';
-
 
 class HomePageForState extends StatefulWidget {
   const HomePageForState({super.key});
@@ -37,7 +36,9 @@ class HomePage extends State<HomePageForState> {
             onPressed: () {
               Provider.of<ThemeNotifier>(context, listen: false).switchTheme();
               setState(() {
-                navigationBarIconColor = Colors.black == navigationBarIconColor ? Colors.red : Colors.black;
+                navigationBarIconColor = Colors.black == navigationBarIconColor
+                    ? Colors.red
+                    : Colors.black;
               });
             },
           ),
@@ -45,19 +46,23 @@ class HomePage extends State<HomePageForState> {
       ),
       body: Center(
         child: Column(
-          children: <Widget> [
+          children: <Widget>[
             Expanded(
               child: ListView.builder(
-                itemCount: Provider.of<CreatedSessions>(context).sessions.length,
+                itemCount:
+                    Provider.of<CreatedSessions>(context).sessions.length,
                 itemBuilder: (context, index) {
                   return ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MapScreenn(index : index)),
+                        MaterialPageRoute(
+                            builder: (context) => MapScreenn(index: index)),
                       );
                     },
-                    child: Text(Provider.of<CreatedSessions>(context).sessions[index].toString()),
+                    child: Text(Provider.of<CreatedSessions>(context)
+                        .sessions[index]
+                        .toString()),
                   );
                 },
               ),
@@ -73,9 +78,9 @@ class HomePage extends State<HomePageForState> {
           setState(() {
             currentIndex = index;
             if (currentIndex == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MapScreen()),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MapScreen()),
               );
             }
             if (currentIndex == 1) {
@@ -89,7 +94,8 @@ class HomePage extends State<HomePageForState> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'History'),
-          BottomNavigationBarItem(icon: Icon(Icons.wifi_tethering), label: 'Add session'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.wifi_tethering), label: 'Add session'),
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Session'),
         ],
       ),

@@ -9,8 +9,10 @@ void main() {
   runApp(MaterialApp(home: MapScreen()));
 }
 
-void convertToJson(List<LatLng> _latlng, String name, String time, String place){
-  String pointsJson = jsonEncode(_latlng.map((point) => point.toJson()).toList());
+void convertToJson(
+    List<LatLng> _latlng, String name, String time, String place) {
+  String pointsJson =
+      jsonEncode(_latlng.map((point) => point.toJson()).toList());
   var event = {
     'date': time,
     'owner': name,
@@ -27,7 +29,8 @@ Session convertFromJson(String jsonString) {
   String time = jsonData['date'];
   String place = jsonData['place'];
   List<dynamic> pointsJson = jsonDecode(jsonData['route']);
-  List<LatLng> latlng = pointsJson.map((point) => LatLng.fromJson(point)).toList();
+  List<LatLng> latlng =
+      pointsJson.map((point) => LatLng.fromJson(point)).toList();
 
   print('Name: $name');
   print('Time: $time');
@@ -63,14 +66,14 @@ class _MapScreenState extends State<MapScreen> {
     super.dispose();
   }
 
-  void addMarker(LatLng lat){
+  void addMarker(LatLng lat) {
     setState(() {
       _points.add(lat);
       _markers.add(Marker(
           point: lat,
-          child: _markers.isEmpty? const Icon(Icons.pin_drop, color: Colors.black) :
-          const Icon(Icons.run_circle_rounded, color: Colors.black)
-      ));
+          child: _markers.isEmpty
+              ? const Icon(Icons.pin_drop, color: Colors.black)
+              : const Icon(Icons.run_circle_rounded, color: Colors.black)));
     });
   }
 
@@ -96,25 +99,22 @@ class _MapScreenState extends State<MapScreen> {
                     options: MapOptions(
                         initialCenter: LatLng(55.753141, 48.742795),
                         initialZoom: zoom,
-                        onTap: (tapPosition, point){
+                        onTap: (tapPosition, point) {
                           addMarker(point);
-                        }
-                    ),
+                        }),
                     children: [
                       TileLayer(
-                        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        urlTemplate:
+                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                         userAgentPackageName: 'com.example.flutter_map_example',
                       ),
-                      MarkerLayer(
-                          markers: _markers
-                      ),
+                      MarkerLayer(markers: _markers),
                       PolylineLayer(
                         polylines: [
                           Polyline(
                               points: _points,
                               color: Colors.red,
-                              strokeWidth: 5
-                          ),
+                              strokeWidth: 5),
                         ],
                       ),
                     ],
@@ -127,38 +127,35 @@ class _MapScreenState extends State<MapScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               IconButton(
-                  onPressed: (){
-                    if (zoom > 5){
+                  onPressed: () {
+                    if (zoom > 5) {
                       setState(() {
                         zoom--;
                       });
                     }
                     _mapController.move(LatLng(55.753141, 48.742795), zoom);
                   },
-                  icon: Icon(Icons.zoom_out)
-              ),
+                  icon: Icon(Icons.zoom_out)),
               IconButton(
-                  onPressed: (){
-                    if (zoom < 19){
+                  onPressed: () {
+                    if (zoom < 19) {
                       setState(() {
                         zoom++;
                       });
                     }
                     _mapController.move(LatLng(55.753141, 48.742795), zoom);
                   },
-                  icon: Icon(Icons.zoom_in)
-              ),
+                  icon: Icon(Icons.zoom_in)),
               IconButton(
-                  onPressed: (){
-                    if (_markers.isNotEmpty){
+                  onPressed: () {
+                    if (_markers.isNotEmpty) {
                       setState(() {
                         _markers.removeLast();
                         _points.removeLast();
                       });
                     }
                   },
-                  icon: Icon(Icons.arrow_back)
-              )
+                  icon: Icon(Icons.arrow_back))
             ],
           ),
           Expanded(
@@ -179,7 +176,8 @@ class _MapScreenState extends State<MapScreen> {
                       decoration: InputDecoration(
                         labelText: 'Name',
                         labelStyle: TextStyle(color: Colors.white),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
                       ),
                     ),
                   ),
@@ -195,7 +193,8 @@ class _MapScreenState extends State<MapScreen> {
                       decoration: InputDecoration(
                         labelText: 'Place',
                         labelStyle: TextStyle(color: Colors.white),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
                       ),
                     ),
                   ),
@@ -211,7 +210,8 @@ class _MapScreenState extends State<MapScreen> {
                       decoration: InputDecoration(
                         labelText: 'Time',
                         labelStyle: TextStyle(color: Colors.white),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.0)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0)),
                       ),
                     ),
                   ),
@@ -226,12 +226,15 @@ class _MapScreenState extends State<MapScreen> {
                           String time = timeController.text;
                           String place = placeController.text;
                           convertToJson(_points, name, time, place);
-                          Provider.of<CreatedSessions>(context, listen: false).addSession(name, time, place, _points);
+                          Provider.of<CreatedSessions>(context, listen: false)
+                              .addSession(name, time, place, _points);
                           Navigator.pushNamed(context, '/');
                         },
                         style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
-                          foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                          backgroundColor:
+                              WidgetStateProperty.all<Color>(Colors.black),
+                          foregroundColor:
+                              WidgetStateProperty.all<Color>(Colors.white),
                         ),
                         child: Text('Create'),
                       ),

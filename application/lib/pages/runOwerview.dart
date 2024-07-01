@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+
 import '../data/provider.dart';
-import 'package:innorun/pages/main_page.dart';
-
 import 'TimerPage.dart';
-
 
 class MapScreenn extends StatefulWidget {
   final int index;
+
   MapScreenn({required this.index, Key? key}) : super(key: key);
 
   @override
@@ -31,21 +30,23 @@ class _MapScreenState extends State<MapScreenn> {
     _mapController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    CreatedSessions createdSessions = Provider.of<CreatedSessions>(context, listen: false);
+    CreatedSessions createdSessions =
+        Provider.of<CreatedSessions>(context, listen: false);
     List<Session> sessions = createdSessions.sessions;
     String name = sessions[widget.index].name;
     String time = sessions[widget.index].time;
     String place = sessions[widget.index].place;
     List<LatLng> _points = sessions[widget.index].latlng;
     List<Marker> _markers2 = [];
-    for(int i = 0; i < _points.length; i++){
+    for (int i = 0; i < _points.length; i++) {
       _markers2.add(Marker(
           point: _points[i],
-          child: _markers2.isEmpty? const Icon(Icons.pin_drop, color: Colors.black) :
-          const Icon(Icons.run_circle_rounded, color: Colors.black)
-      ));
+          child: _markers2.isEmpty
+              ? const Icon(Icons.pin_drop, color: Colors.black)
+              : const Icon(Icons.run_circle_rounded, color: Colors.black)));
     }
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -67,7 +68,8 @@ class _MapScreenState extends State<MapScreenn> {
                     ),
                     children: [
                       TileLayer(
-                        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        urlTemplate:
+                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                         userAgentPackageName: 'com.example.flutter_map_example',
                       ),
                       MarkerLayer(
@@ -135,13 +137,18 @@ class _MapScreenState extends State<MapScreenn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => StopwatchPage(index: widget.index,)),
+                            MaterialPageRoute(
+                                builder: (context) => StopwatchPage(
+                                      index: widget.index,
+                                    )),
                           );
                           print("Кнопка создать нажата");
                         },
                         style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
-                          foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                          backgroundColor:
+                              WidgetStateProperty.all<Color>(Colors.black),
+                          foregroundColor:
+                              WidgetStateProperty.all<Color>(Colors.white),
                         ),
                         child: Text('Start'),
                       ),
