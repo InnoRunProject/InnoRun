@@ -15,6 +15,9 @@ class Historypage extends StatefulWidget {
 class _HistorypageState extends State<Historypage> {
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+    Color buttonColor = theme.brightness == Brightness.light ? Colors.black : Colors.white;
+    Color TextColor = theme.brightness == Brightness.light ? Colors.white : Colors.black;
     return Scaffold(
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
@@ -33,10 +36,8 @@ class _HistorypageState extends State<Historypage> {
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.black),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                          backgroundColor: WidgetStateProperty.all<Color>(buttonColor),
+                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -54,7 +55,7 @@ class _HistorypageState extends State<Historypage> {
                           Provider.of<CreatedSessionsHistory>(context)
                               .sessions[index]
                               .toString(),
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: TextColor),
                         ),
                       ),
                     );
