@@ -22,18 +22,6 @@ class CreatedSessions extends ChangeNotifier {
   }
 }
 
-class Parser {
-  static String base_url = 'http://localhost:5000/';
-
-  static Future<List<Session>> getSessions() async {
-    final response = await Dio().get(base_url);
-    List<Session> sessions = [];
-    for (var i = 0; i < response.data.length; i++) {
-      sessions.add(convertFromJson(response.data[i]));
-    }
-    return sessions;
-  }
-}
 
 class Session {
   final String name;

@@ -78,78 +78,58 @@ class _StopwatchPageState extends State<StopwatchPage> {
               : const Icon(Icons.run_circle_rounded, color: Colors.black)));
     }
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('InnoRun'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              flex: 5,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12.0),
-                  child: Container(
-                    child: FlutterMap(
-                      mapController: _mapController,
-                      options: MapOptions(
-                        initialCenter: LatLng(55.753141, 48.742795),
-                        initialZoom: zoom,
-                      ),
-                      children: [
-                        TileLayer(
-                          urlTemplate:
-                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          userAgentPackageName:
-                              'com.example.flutter_map_example',
-                        ),
-                        MarkerLayer(
-                          markers: _markers2,
-                        ),
-                        PolylineLayer(
-                          polylines: [
-                            Polyline(
-                              points: _points,
-                              color: Colors.red,
-                              strokeWidth: 5,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
             HeartBeatAnimation(
-              isRunning: isRunning,
+              isRunning: true,
             ),
-            SizedBox(height: 20),
-            Text(
-              seconds.toString(),
-              style: TextStyle(fontSize: 24.0),
+            SizedBox(height: 100,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  seconds.toString(),
+                  style: TextStyle(fontSize: 24.0),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            isRunning
-                ? ElevatedButton(
-                    onPressed: onPauseButtonPressed,
-                    child: Text('Пауза'),
-                  )
-                : ElevatedButton(
-                    onPressed: onContinueButtonPressed,
-                    child: Text('Продолжить'),
-                  ),
-            ElevatedButton(
-                onPressed: () {
-                  createdSessionsHistory.addSession(
-                      name, time, place, _points, seconds.toString());
-                  createdSessions.removeSession(widget.index);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HomePageForState()),
-                  );
-                },
-                child: const Text("Finish"))
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                isRunning
+                    ? ElevatedButton(
+                        onPressed: onPauseButtonPressed,
+                        child: Text('Pause'),
+                      )
+                    : ElevatedButton(
+                        onPressed: onContinueButtonPressed,
+                        child: Text('Continue'),
+                      ),
+              ],
+            ),
+            SizedBox(height: 100,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      createdSessionsHistory.addSession(
+                          name, time, place, _points, seconds.toString());
+                      createdSessions.removeSession(widget.index);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePageForState()),
+                      );
+                    },
+                    child: const Text("Finish"))
+              ],
+            ),
           ],
         ),
       ),

@@ -51,7 +51,7 @@ class HeartPainter extends CustomPainter {
     final double x0 = size.width / 2;
     final double y0 = size.height / 2;
 
-    final double heartSize = size.width / 30;
+    final double heartSize = size.width / 15;
 
     final Path path = Path();
     path.moveTo(x0, y0 - heartSize);
