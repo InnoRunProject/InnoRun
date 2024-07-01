@@ -16,6 +16,9 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => ThemeNotifier(ThemeData.light()),
         ),
+        ChangeNotifierProvider(
+          create: (_) => CreatedSessionsHistory(),
+        ),
       ],
       child: const InnoRun(),
     )

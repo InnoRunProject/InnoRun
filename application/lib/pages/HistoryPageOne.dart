@@ -8,15 +8,15 @@ import 'package:innorun/pages/main_page.dart';
 import 'TimerPage.dart';
 
 
-class MapScreenn extends StatefulWidget {
+class Historypageone extends StatefulWidget {
   final int index;
-  MapScreenn({required this.index, Key? key}) : super(key: key);
+  Historypageone({required this.index, Key? key}) : super(key: key);
 
   @override
-  State<MapScreenn> createState() => _MapScreenState();
+  State<Historypageone> createState() => _MapScreenState();
 }
 
-class _MapScreenState extends State<MapScreenn> {
+class _MapScreenState extends State<Historypageone> {
   late final MapController _mapController;
   double zoom = 15.0;
 
@@ -33,8 +33,8 @@ class _MapScreenState extends State<MapScreenn> {
   }
   @override
   Widget build(BuildContext context) {
-    CreatedSessions createdSessions = Provider.of<CreatedSessions>(context, listen: false);
-    List<Session> sessions = createdSessions.sessions;
+    CreatedSessionsHistory createdSessions = Provider.of<CreatedSessionsHistory>(context, listen: false);
+    List<SessionHistory> sessions = createdSessions.sessions;
     String name = sessions[widget.index].name;
     String time = sessions[widget.index].time;
     String place = sessions[widget.index].place;
@@ -135,7 +135,7 @@ class _MapScreenState extends State<MapScreenn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => StopwatchPage(index: widget.index,)),
+                            MaterialPageRoute(builder: (context) => const HomePageForState()),
                           );
                           print("Кнопка создать нажата");
                         },
@@ -143,7 +143,7 @@ class _MapScreenState extends State<MapScreenn> {
                           backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
                           foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                         ),
-                        child: Text('Start'),
+                        child: Text('back'),
                       ),
                     ],
                   )

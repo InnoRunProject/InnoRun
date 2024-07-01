@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:innorun/pages/map.dart';
 import 'package:innorun/pages/runOwerview.dart';
 
+import 'HistoryPage.dart';
+
 
 class HomePageForState extends StatefulWidget {
   const HomePageForState({super.key});
@@ -18,7 +20,7 @@ class HomePage extends State<HomePageForState> {
   int currentIndex = 0;
   List<Widget> body = const [
     Icon(Icons.home_outlined),
-    Icon(Icons.search),
+    Historypage(),
     MapScreen(),
     Icon(Icons.book_outlined),
   ];
@@ -74,6 +76,12 @@ class HomePage extends State<HomePageForState> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const MapScreen()),
+              );
+            }
+            if (currentIndex == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Historypage()),
               );
             }
           });
