@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import '../data/provider.dart';
 import 'package:innorun/pages/main_page.dart';
 
+import 'TimerPage.dart';
+
 
 class MapScreenn extends StatefulWidget {
   final int index;
@@ -133,7 +135,7 @@ class _MapScreenState extends State<MapScreenn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const HomePageForState()),
+                            MaterialPageRoute(builder: (context) => StopwatchPage(index: widget.index,)),
                           );
                           print("Кнопка создать нажата");
                         },
@@ -141,7 +143,7 @@ class _MapScreenState extends State<MapScreenn> {
                           backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
                           foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
                         ),
-                        child: Text('Join'),
+                        child: Text('Start'),
                       ),
                     ],
                   )
