@@ -5,6 +5,7 @@ We introduce you the application to communicate runners to join running together
 
 
 ---
+
 ## In our application you can add run session
 
 <img src="presentation_files/add_sess.gif" alt="add session gif">
@@ -24,7 +25,7 @@ We introduce you the application to communicate runners to join running together
 ---
 Download the application:
 
-| Platform | Source          |
-|:--------:|-----------------|
-| Android  | [InnoRun.apk]() |
-| Windows  | [InnoRun.exe]() |
+| Platform | Source                                                                                                                   |
+|:--------:|--------------------------------------------------------------------------------------------------------------------------|
+| Android  | [InnoRun.apk](https://github.com/InnoRunProject/InnoRun/releases/download/untagged-c8d4bbc55e210a5c37fe/app-release.apk) |
+| Windows  | [InnoRun.exe](https://github.com/InnoRunProject/InnoRun/releases/download/untagged-c8d4bbc55e210a5c37fe/innorun.exe)     |
