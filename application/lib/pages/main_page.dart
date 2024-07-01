@@ -4,6 +4,8 @@ import 'package:innorun/pages/map.dart';
 import 'package:provider/provider.dart';
 import 'package:innorun/pages/home_page.dart';
 import 'HistoryPage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:innorun/data/locale_provider.dart';
 
 class HomePageForState extends StatefulWidget {
   const HomePageForState({super.key});
@@ -36,9 +38,31 @@ class HomePage extends State<HomePageForState> {
                 navigationBarIconColor = Colors.black == navigationBarIconColor
                     ? Colors.red
                     : Colors.black;
+                AppLocalizations.supportedLocales;
               });
             },
           ),
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              if (value == 'en') {
+                Provider.of<LocaleProvider>(context, listen: false).setLocale(const Locale('en'));
+              } else if (value == 'ru') {
+                Provider.of<LocaleProvider>(context, listen: false).setLocale(const Locale('ru'));
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem(
+                  value: 'en',
+                  child: Text('Endglish'),
+                ),
+                const PopupMenuItem(
+                  value: 'ru',
+                  child: Text('Русский'),
+                ),
+              ];
+            },
+          )
         ],
       ),
       body: body[currentIndex],
@@ -51,10 +75,10 @@ class HomePage extends State<HomePageForState> {
             currentIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'History'),
-          BottomNavigationBarItem(icon: Icon(Icons.wifi_tethering), label: 'Add session'),
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: AppLocalizations.of(context)!.home),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: AppLocalizations.of(context)!.history),
+          BottomNavigationBarItem(icon: Icon(Icons.wifi_tethering), label: AppLocalizations.of(context)!.addSession),
         ],
       ),
     );
