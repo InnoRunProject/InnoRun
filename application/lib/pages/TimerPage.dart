@@ -100,38 +100,6 @@ class _StopwatchPageState extends State<StopwatchPage> {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                isRunning
-                    ? ElevatedButton(
-                        onPressed: onPauseButtonPressed,
-                        child: Text('Pause'),
-                      )
-                    : ElevatedButton(
-                        onPressed: onContinueButtonPressed,
-                        child: Text('Continue'),
-                      ),
-              ],
-            ),
-            SizedBox(height: 100,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      createdSessionsHistory.addSession(
-                          name, time, place, _points, seconds.toString());
-                      createdSessions.removeSession(widget.index);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePageForState()),
-                      );
-                    },
-                    child: const Text("Finish"))
-              ],
-            ),
             SizedBox(height: 20),
             isRunning
                 ? ElevatedButton(
