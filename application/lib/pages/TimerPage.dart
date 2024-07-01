@@ -136,8 +136,8 @@ class _StopwatchPageState extends State<StopwatchPage> {
             ),
             ElevatedButton(
                 onPressed: () {
+                  createdSessionsHistory.addSession(name, time, place, _points, seconds.toString());
                   createdSessions.removeSession(widget.index);
-                  createdSessionsHistory.addSession(name, time, place, _points);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const HomePageForState()),

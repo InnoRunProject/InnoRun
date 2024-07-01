@@ -29,10 +29,10 @@ class Session {
 }
 
 class CreatedSessionsHistory extends ChangeNotifier {
-  List<Session> _sessions = [];
-  List<Session> get sessions => _sessions;
-  void addSession(String name, String time, String place,List<LatLng> latlng ) {
-    _sessions.insert(0, Session(name: name, time: time, place: place, latlng: latlng));
+  List<SessionHistory> _sessions = [];
+  List<SessionHistory> get sessions => _sessions;
+  void addSession(String name, String time, String place,List<LatLng> latlng, String RunTime) {
+    _sessions.insert(0, SessionHistory(name: name, time: time, place: place, latlng: latlng, RunTime: RunTime));
     notifyListeners();
   }
   void removeSession(int index) {
