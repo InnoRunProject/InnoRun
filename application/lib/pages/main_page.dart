@@ -19,7 +19,6 @@ class HomePage extends State<HomePageForState> {
     HomePageInitial(),
     Historypage(),
     MapScreen(),
-    Icon(Icons.book_outlined),
   ];
   Color navigationBarIconColor = Colors.black;
 
@@ -55,9 +54,7 @@ class HomePage extends State<HomePageForState> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'History'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.wifi_tethering), label: 'Add session'),
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Session'),
+          BottomNavigationBarItem(icon: Icon(Icons.wifi_tethering), label: 'Add session'),
         ],
       ),
     );
