@@ -13,14 +13,13 @@ class HomePageForState extends StatefulWidget {
 }
 
 class HomePage extends State<HomePageForState> {
-  bool ddd = false;
   int currentIndex = 0;
   List<Widget> body = const [
     HomePageInitial(),
     Historypage(),
     MapScreen(),
   ];
-  Color navigationBarIconColor = Colors.black;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +31,6 @@ class HomePage extends State<HomePageForState> {
             icon: const Icon(Icons.brightness_6),
             onPressed: () {
               Provider.of<ThemeNotifier>(context, listen: false).switchTheme();
-              setState(() {
-                navigationBarIconColor = Colors.black == navigationBarIconColor
-                    ? Colors.red
-                    : Colors.black;
-              });
             },
           ),
         ],
@@ -45,7 +39,6 @@ class HomePage extends State<HomePageForState> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
-        fixedColor: navigationBarIconColor,
         onTap: (index) {
           setState(() {
             currentIndex = index;
