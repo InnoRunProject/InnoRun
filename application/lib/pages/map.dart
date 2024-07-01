@@ -225,7 +225,7 @@ class _MapScreenState extends State<MapScreen> {
                           String name = nameController.text;
                           String time = timeController.text;
                           String place = placeController.text;
-                          convertToJson(_points, name, time, place);
+                          // convertToJson(_points, name, time, place);
                           Provider.of<CreatedSessions>(context, listen: false)
                               .addSession(name, time, place, _points);
                           Navigator.pushNamed(context, '/');
