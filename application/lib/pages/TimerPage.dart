@@ -67,7 +67,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
     List<Session> sessions = createdSessions.sessions;
     List<LatLng> _points = sessions[widget.index].latlng;
     List<Marker> _markers2 = [];
-    String name = sessions[widget.index].name;
+    String name = sessions[widget.index].description;
     String time = sessions[widget.index].time;
     String place = sessions[widget.index].place;
     for(int i = 0; i < _points.length; i++){

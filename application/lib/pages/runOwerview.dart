@@ -3,7 +3,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import '../data/provider.dart';
-import 'package:innorun/pages/main_page.dart';
 
 import 'TimerPage.dart';
 
@@ -35,7 +34,7 @@ class _MapScreenState extends State<MapScreenn> {
   Widget build(BuildContext context) {
     CreatedSessions createdSessions = Provider.of<CreatedSessions>(context, listen: false);
     List<Session> sessions = createdSessions.sessions;
-    String name = sessions[widget.index].name;
+    String name = sessions[widget.index].description;
     String time = sessions[widget.index].time;
     String place = sessions[widget.index].place;
     List<LatLng> _points = sessions[widget.index].latlng;

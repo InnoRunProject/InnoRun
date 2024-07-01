@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:innorun/data/boxes.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import '../data/provider.dart';
@@ -195,6 +196,7 @@ class _MapScreenState extends State<MapScreen> {
                           String time = timeController.text;
                           String place = placeController.text;
                           Provider.of<CreatedSessions>(context, listen: false).addSession(name, time, place, _points);
+                          boxSessions.put('key_$name', Session(description: name, time: time, place: place, latlng: _points));
                           Navigator.pushNamed(context, '/');
                         },
                         style: ButtonStyle(

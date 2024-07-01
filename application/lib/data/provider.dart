@@ -1,15 +1,16 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:innorun/pages/map.dart';
+import 'package:hive/hive.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:dio/dio.dart';
+
+part 'provider.g.dart';
+
 
 class CreatedSessions extends ChangeNotifier {
   List<Session> _sessions = []; 
   List<Session> get sessions => _sessions;
 
-  void addSession(String name, String time, String place,List<LatLng> latlng ) {
-    _sessions.insert(0, Session(name: name, time: time, place: place, latlng: latlng));
+  void addSession(String description, String time, String place,List<LatLng> latlng ) {
+    _sessions.insert(0, Session(description: description, time: time, place: place, latlng: latlng));
     notifyListeners();
   }
   void removeSession(int index) {
@@ -20,15 +21,24 @@ class CreatedSessions extends ChangeNotifier {
   }
 }
 
+
+@HiveType(typeId: 0)
 class Session {
-  final String name;
+  @HiveField(0)
+  final String description;
+
+  @HiveField(1)
   final String time;
+
+  @HiveField(2)
   final String place;
+
+  @HiveField(3)
   final List<LatLng> latlng;
-  Session({required this.name, required this.time, required this.place, required this.latlng});
+  Session({required this.description, required this.time, required this.place, required this.latlng});
   @override
   String toString() {
-    return "time: $time, creator: $name, place: $place";
+    return "Time: $time, Creator: $description, Place: $place";
   }
 }
 

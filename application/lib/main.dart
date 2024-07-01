@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:innorun/data/theme.dart';
 import 'package:innorun/data/provider.dart';
 import 'package:innorun/pages/main_page.dart';
 import 'package:innorun/pages/map.dart';
+import 'package:innorun/data/boxes.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(SessionAdapter());
+  boxSessions = await Hive.openBox<Session>('sessionBox');
+  boxPreviousSessions = await Hive.openBox<Session>('previousSessionBox');
   runApp(
     MultiProvider(
       providers: [

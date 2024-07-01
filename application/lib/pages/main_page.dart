@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:innorun/data/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:innorun/pages/map.dart';
+import 'home_page.dart';
 
 import 'HistoryPage.dart';
 
