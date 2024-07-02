@@ -25,7 +25,7 @@ We introduce you the application to communicate runners to join running together
 ---
 Download the application:
 
-| Platform | Source                                                                                                                   |
-|:--------:|--------------------------------------------------------------------------------------------------------------------------|
+| Platform | Source                                                                                           |
+|:--------:|--------------------------------------------------------------------------------------------------|
 | Android  | [InnoRun.apk](https://github.com/InnoRunProject/InnoRun/releases/download/1.0.0/app-release.apk) |
 | Windows  | [InnoRun.exe](https://github.com/InnoRunProject/InnoRun/releases/download/1.0.0/innorun.exe)     |
