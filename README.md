@@ -27,5 +27,5 @@ Download the application:
 
 | Platform | Source                                                                                                                   |
 |:--------:|--------------------------------------------------------------------------------------------------------------------------|
-| Android  | [InnoRun.apk](https://github.com/InnoRunProject/InnoRun/releases/download/untagged-c8d4bbc55e210a5c37fe/app-release.apk) |
-| Windows  | [InnoRun.exe](https://github.com/InnoRunProject/InnoRun/releases/download/untagged-c8d4bbc55e210a5c37fe/innorun.exe)     |
+| Android  | [InnoRun.apk](https://github.com/InnoRunProject/InnoRun/releases/download/1.0.0/app-release.apk) |
+| Windows  | [InnoRun.exe](https://github.com/InnoRunProject/InnoRun/releases/download/1.0.0/innorun.exe)     |
